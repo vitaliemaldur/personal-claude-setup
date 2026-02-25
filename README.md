@@ -13,7 +13,7 @@ git clone <repo-url> ~/.claude
 ```bash
 cd ~/.claude
 git init
-git remote add origin <repo-url>
+git remote add origin git@github.com:vitaliemaldur/personal-claude-setup.git
 git fetch
 git checkout -f main
 ```
