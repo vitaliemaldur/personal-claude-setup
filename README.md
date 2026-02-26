@@ -37,6 +37,7 @@ cd ~/.claude && git pull
 | `agents/` | Custom subagents |
 | `hooks/` | Hook scripts (referenced by settings.json) |
 | `mcp-servers.json` | MCP server definitions (reference, applied via `claude mcp add`) |
+| `install-deps.sh` | Installs CLI tools (gh, glab, etc.) via Homebrew |
 
 ## Adding a Skill
 
