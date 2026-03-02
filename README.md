@@ -36,8 +36,7 @@ cd ~/.claude && git pull
 | `skills/` | Custom slash commands |
 | `agents/` | Custom subagents |
 | `hooks/` | Hook scripts (referenced by settings.json) |
-| `mcp-servers.json` | MCP server definitions (reference, applied via `claude mcp add`) |
-| `install-deps.sh` | Installs CLI tools (gh, glab, etc.) via Homebrew |
+| `setup.sh` | Installs Homebrew packages and MCP servers |
 
 ## Adding a Skill
 
@@ -54,8 +53,4 @@ mkdir ~/.claude/skills/my-skill
 
 ## MCP Servers
 
-MCP servers live in `~/.claude.json` (runtime state), so they can't be tracked via git. Define them in `mcp-servers.json` for reference, then add with:
-
-```bash
-claude mcp add --transport http <name> <url>
-```
+MCP servers live in `~/.claude.json` (runtime state), so they can't be tracked via git. Add `claude mcp add` commands directly in `setup.sh`, then run it to install. The script will prompt for API keys and tokens interactively.
