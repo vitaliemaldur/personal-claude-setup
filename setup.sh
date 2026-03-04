@@ -13,20 +13,25 @@ skip() { echo -e "${YELLOW}[skip]${NC} $1 (already installed)"; }
 DEPS=(
     "gh:gh"
     "glab:glab"
+    "gcloud:google-cloud-sdk"
 )
 
 echo ""
 echo "==> Installing dependencies..."
 echo ""
 
+INSTALLED=()
 for entry in "${DEPS[@]}"; do
     cmd="${entry%%:*}"
     pkg="${entry##*:}"
 
     if command -v "$cmd" &>/dev/null; then
         skip "$pkg"
+    elif [[ " ${INSTALLED[*]:-} " == *" $pkg "* ]]; then
+        log "$pkg (already installed above)"
     else
         brew install "$pkg"
+        INSTALLED+=("$pkg")
         log "$pkg"
     fi
 done

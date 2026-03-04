@@ -7,3 +7,5 @@
 
 - `gh` — GitHub CLI. Use for GitHub operations (PRs, issues, repos, actions).
 - `glab` — GitLab CLI. Use for GitLab operations (MRs, issues, pipelines).
+- `gcloud` — Google Cloud CLI. Use for GCP resource management, auth, and configuration.
+- `bq` — BigQuery CLI. Use for BigQuery queries, dataset/table management.
