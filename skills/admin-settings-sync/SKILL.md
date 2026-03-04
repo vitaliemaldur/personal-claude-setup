@@ -9,9 +9,9 @@ Sync local changes in `~/.claude` to the remote git repository.
 
 Follow these steps exactly:
 
-1. Run `git -C ~/.claude status --porcelain` to check for local changes.
-2. If there are no changes, tell the user "No changes to sync." and stop.
-3. Pull latest from remote: `git -C ~/.claude pull --rebase`.
+1. Pull latest from remote: `git -C ~/.claude pull --rebase`.
+2. Run `git -C ~/.claude status --porcelain` to check for local changes.
+3. If there are no changes, tell the user "Already up to date, no local changes." and stop.
 4. Run `git -C ~/.claude diff` and `git -C ~/.claude diff --cached` and `git -C ~/.claude status` to show the full picture.
 5. Present a clear summary of what changed to the user.
 6. Ask the user to confirm before proceeding. Do NOT commit without explicit confirmation.
