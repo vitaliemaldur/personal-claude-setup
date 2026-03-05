@@ -1,5 +1,5 @@
 ---
-name: xyz-settings-sync
+name: v-settings-sync
 description: Sync local Claude Code config changes to remote git
 user-invocable: true
 allowed-tools: Bash, Read, AskUserQuestion
