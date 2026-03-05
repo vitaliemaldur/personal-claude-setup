@@ -3,7 +3,8 @@
   "env": {},
   "permissions": {
     "allow": [
-      "mcp__context7__*"
+      "mcp__context7__*",
+      "Bash(find:*)"
     ]
   },
   "hooks": {}
