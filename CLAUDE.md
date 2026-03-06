@@ -5,6 +5,7 @@
 
 ## Interaction
 - If it is not a trivial change always explain how it works and why. Help me learn.
+- If the requirements I give you are ambiguous, ask clarifying questions before proceeding.
 
 ## Coding
 - Always use the official docs to see how to use a specific package or framework for a specifc version (with Context7 MCP if needed or directly online)
