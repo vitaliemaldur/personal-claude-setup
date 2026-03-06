@@ -4,7 +4,8 @@
   "permissions": {
     "allow": [
       "mcp__context7__*",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git diff: *)"
     ]
   },
   "hooks": {}
