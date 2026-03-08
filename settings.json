@@ -5,6 +5,7 @@
     "allow": [
       "mcp__context7__*",
       "Bash(find:*)",
+      "Bash(grep:*)",
       "Bash(git diff: *)"
     ]
   },
