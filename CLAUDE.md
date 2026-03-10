@@ -8,7 +8,8 @@
 - If the requirements I give you are ambiguous, ask clarifying questions before proceeding.
 
 ## Coding
-- Always use the official docs to see how to use a specific package or framework for a specifc version (with Context7 MCP if needed or directly online)
+- Always use the official docs to see how to use a specific package or framework for a specifc version (with Context7 MCP if needed or directly online).
+- Verify all applied changes (edge cases, imports, types, configs) and run relevant tests (if possible) before you finish. Prove that they work.
 
 ## Available CLI Tools
 - `git` - Git CLI. Use for repo inspection and interaction.
