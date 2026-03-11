@@ -9,5 +9,6 @@
       "Bash(git diff: *)"
     ]
   },
-  "hooks": {}
+  "hooks": {},
+  "voiceEnabled": true
 }
