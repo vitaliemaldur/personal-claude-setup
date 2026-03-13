@@ -31,10 +31,10 @@ Based on the analysis, prepare everything the user needs to review in a single s
 
 5. Determine the conventional commit type from: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`, `perf`, `build`, `style`.
 6. If a scope is obvious from the changes, include it: `feat(auth): ...`
-7. Write a clear, concise subject line (imperative mood, under 72 characters, no trailing period).
-8. Write a commit body explaining WHAT changed and WHY.
-9. If `--branch` is in the arguments, derive a branch name: `type/TASK-ID/slug` (e.g. `feat/IMP-123/add-user-auth`).
-10. If `--mr` is in the arguments, draft the MR/PR title (= commit subject) and a short MR/PR description summarizing the changes.
+7. Write a clear, concise subject line (imperative mood, under 72 characters, no trailing period). Include the task ID at the end of the subject: `type(scope): description [TASK-ID]` (e.g. `feat(auth): add login endpoint [IMP-123]`).
+8. Write a commit body explaining WHAT changed and WHY. Do NOT put the task ID in the body — it belongs only in the subject.
+9. If `--branch` is in the arguments, ALWAYS create a new branch — regardless of which branch is currently checked out. Derive the branch name: `type/TASK-ID/slug` (e.g. `feat/IMP-123/add-user-auth`).
+10. If `--mr` is in the arguments, draft the MR/PR title using the exact same format as the commit subject (including the task ID), and a short MR/PR description summarizing the changes. The MR/PR title must match the commit subject because it becomes a commit message when merged.
 
 ## Phase 3 — Single Confirmation
 
@@ -45,11 +45,9 @@ Present EVERYTHING in one block for the user to review and edit. Use this exact 
 
     **Commit message:**
     ```
-    type(scope): subject line
+    type(scope): subject line [TASK-ID]
 
     Body explaining what and why.
-
-    [TASK-ID]
     ```
 
     **Files to stage:**
@@ -58,13 +56,10 @@ Present EVERYTHING in one block for the user to review and edit. Use this exact 
     - ...
 
     **MR/PR** (only if `--mr`):
-    - Title: `type(scope): subject line`
+    - Title: `type(scope): subject line [TASK-ID]`
     - Description:
       ## Summary
       - bullet points
-
-      ## Task
-      [TASK-ID]
 
 11. Ask the user to confirm or request changes. They can edit ANY part: branch name, commit message, file list, MR/PR title/description. Do NOT proceed without explicit approval.
 12. If the user requests changes, update the relevant parts and re-present. Repeat until approved.
@@ -78,11 +73,9 @@ Once approved, execute all steps without further prompts:
 15. Create the commit using a heredoc to preserve formatting:
     ```bash
     git commit -m "$(cat <<'EOF'
-    type(scope): subject line
+    type(scope): subject line [TASK-ID]
 
     Body explaining what and why.
-
-    [TASK-ID]
     EOF
     )"
     ```
