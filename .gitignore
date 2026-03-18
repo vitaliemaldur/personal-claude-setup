@@ -2,6 +2,7 @@
 .DS_Store
 
 # Claude Code runtime files (not config)
+sessions/
 backups/
 cache/
 debug/
