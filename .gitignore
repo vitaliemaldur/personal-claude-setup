@@ -19,5 +19,6 @@ shell-snapshots/
 telemetry/
 todos/
 usage-data/
+paste-cache/
 statsig/
 policy-limits.json
