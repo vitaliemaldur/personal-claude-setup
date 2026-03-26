@@ -104,16 +104,8 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "filesystem": {
-      "denyRead": [
-        "~/"
-      ],
       "denyWrite": [
         "~/"
-      ],
-      "allowRead": [
-        "~/Projects",
-        "~/Work",
-        "~/.claude"
       ],
       "allowWrite": [
         "~/Projects",
