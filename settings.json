@@ -111,7 +111,8 @@
       "allowWrite": [
         "~/Projects",
         "~/Work",
-        "~/.claude"
+        "~/.claude",
+        "~/.git"
       ]
     },
     "network": {
