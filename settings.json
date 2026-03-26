@@ -38,6 +38,7 @@
       "Bash(glab ci view *)",
       "Bash(glab ci status *)",
       "Bash(glab ci get *)",
+      "Bash(glab ci trace *)",
       "Bash(glab job list *)",
       "Bash(glab job log *)",
       "Bash(glab repo view *)",

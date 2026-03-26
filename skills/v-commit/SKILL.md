@@ -11,6 +11,17 @@ Create a conventional commit for the current project.
 
 Arguments received: $ARGUMENTS
 
+## Git State (auto-collected)
+
+### Status
+!`git status`
+
+### Staged changes summary
+!`git diff --cached --stat`
+
+### Unstaged changes summary
+!`git diff --stat`
+
 ## Argument Parsing
 
 Parse `$ARGUMENTS` for:
@@ -20,10 +31,11 @@ Parse `$ARGUMENTS` for:
 
 ## Phase 1 — Analyze Changes
 
-1. Run `git status` to see staged, unstaged, and untracked files.
-2. Run `git diff --cached` to see staged changes. Run `git diff` to see unstaged changes.
-3. If there are no changes at all (nothing staged, unstaged, or untracked), tell the user "Nothing to commit." and stop.
-4. Read relevant changed files to understand WHAT changed and WHY.
+The **Git State** section above already contains the output of `git status` and diff stats (auto-collected before you start).
+
+1. Review the auto-collected git state above. If there are no changes at all (nothing staged, unstaged, or untracked), tell the user "Nothing to commit." and stop.
+2. For small changesets (few files), run `git diff --cached` to see full staged diffs. For large changesets, read individual changed files selectively instead.
+3. Read relevant changed files to understand WHAT changed and WHY.
 
 ## Phase 2 — Compose Full Plan
 
