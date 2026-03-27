@@ -112,7 +112,9 @@
         "~/Projects",
         "~/Work",
         "~/.claude",
-        "~/.git"
+        "~/.git",
+        "~/Library/Application Support/glab-cli",
+        "~/.config/gcloud"
       ]
     },
     "network": {
