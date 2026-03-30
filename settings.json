@@ -114,7 +114,8 @@
         "~/.claude",
         "~/.git",
         "~/Library/Application Support/glab-cli",
-        "~/.config/gcloud"
+        "~/.config/gcloud",
+        "~/.docker"
       ]
     },
     "network": {
