@@ -105,9 +105,6 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "filesystem": {
-      "denyWrite": [
-        "~/"
-      ],
       "allowWrite": [
         "~/Projects",
         "~/Work",

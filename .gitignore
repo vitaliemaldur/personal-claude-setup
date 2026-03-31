@@ -22,4 +22,5 @@ usage-data/
 paste-cache/
 statsig/
 tasks/
+chrome/
 policy-limits.json
