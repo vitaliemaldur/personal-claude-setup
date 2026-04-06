@@ -117,10 +117,10 @@
     },
     "network": {
       "allowedDomains": [
+        "github.com",
         "*.github.com",
-        "*.gitlab.com",
-        "*.npmjs.org",
-        "*.pypi.org"
+        "gitlab.com",
+        "*.gitlab.com"
       ]
     }
   },
