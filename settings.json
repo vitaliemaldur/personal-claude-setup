@@ -101,29 +101,6 @@
       "Bash(docker compose version *)"
     ]
   },
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "filesystem": {
-      "allowWrite": [
-        "~/Projects",
-        "~/Work",
-        "~/.claude",
-        "~/.git",
-        "~/Library/Application Support/glab-cli",
-        "~/.config/gcloud",
-        "~/.docker"
-      ]
-    },
-    "network": {
-      "allowedDomains": [
-        "github.com",
-        "*.github.com",
-        "gitlab.com",
-        "*.gitlab.com"
-      ]
-    }
-  },
   "hooks": {},
   "voiceEnabled": true,
   "effortLevel": "medium"
