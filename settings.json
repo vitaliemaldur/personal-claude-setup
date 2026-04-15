@@ -102,6 +102,10 @@
     ]
   },
   "hooks": {},
+  "effortLevel": "high",
   "voiceEnabled": true,
-  "effortLevel": "medium"
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/vitalie/.claude/statusline-command.sh"
+  }
 }
