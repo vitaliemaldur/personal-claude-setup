@@ -58,6 +58,9 @@ if prompt CONTEXT7_KEY "Context7 API key"; then
         && log "context7" || skip "context7"
 fi
 
+claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp \
+    && log "atlassian" || skip "atlassian"
+
 echo ""
 log "Done!"
 echo ""
