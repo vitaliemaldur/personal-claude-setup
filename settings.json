@@ -98,14 +98,42 @@
       "Bash(docker compose top *)",
       "Bash(docker compose port *)",
       "Bash(docker compose config *)",
-      "Bash(docker compose version *)"
+      "Bash(docker compose version *)",
+      "mcp__atlassian__atlassianUserInfo",
+      "mcp__atlassian__getAccessibleAtlassianResources",
+      "mcp__atlassian__fetch",
+      "mcp__atlassian__search",
+      "mcp__atlassian__searchJiraIssuesUsingJql",
+      "mcp__atlassian__searchConfluenceUsingCql",
+      "mcp__atlassian__getJiraIssue",
+      "mcp__atlassian__getJiraIssueRemoteIssueLinks",
+      "mcp__atlassian__getJiraIssueTypeMetaWithFields",
+      "mcp__atlassian__getJiraProjectIssueTypesMetadata",
+      "mcp__atlassian__getTransitionsForJiraIssue",
+      "mcp__atlassian__getVisibleJiraProjects",
+      "mcp__atlassian__getIssueLinkTypes",
+      "mcp__atlassian__lookupJiraAccountId",
+      "mcp__atlassian__getConfluencePage",
+      "mcp__atlassian__getConfluencePageDescendants",
+      "mcp__atlassian__getConfluencePageFooterComments",
+      "mcp__atlassian__getConfluencePageInlineComments",
+      "mcp__atlassian__getConfluenceCommentChildren",
+      "mcp__atlassian__getConfluenceSpaces",
+      "mcp__atlassian__getPagesInConfluenceSpace",
+      "mcp__atlassian__addCommentToJiraIssue",
+      "mcp__atlassian__createJiraIssue",
+      "mcp__atlassian__transitionJiraIssue",
+      "mcp__atlassian__createIssueLink",
+      "Bash(terraform fmt *)",
+      "Bash(git checkout *)"
     ]
   },
   "hooks": {},
-  "effortLevel": "high",
-  "voiceEnabled": true,
   "statusLine": {
     "type": "command",
     "command": "bash /Users/vitalie/.claude/statusline-command.sh"
-  }
+  },
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "remoteControlAtStartup": false
 }
