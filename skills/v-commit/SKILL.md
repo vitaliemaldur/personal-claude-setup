@@ -46,7 +46,14 @@ Based on the analysis, prepare everything the user needs to review in a single s
 7. Write a clear, concise subject line (imperative mood, under 72 characters, no trailing period). Include the task ID at the end of the subject: `type(scope): description [TASK-ID]` (e.g. `feat(auth): add login endpoint [IMP-123]`).
 8. Write a commit body explaining WHAT changed and WHY. Do NOT put the task ID in the body — it belongs only in the subject.
 9. If `--branch` is in the arguments, ALWAYS create a new branch — regardless of which branch is currently checked out. Derive the branch name: `type/TASK-ID/slug` (e.g. `feat/IMP-123/add-user-auth`).
-10. If `--mr` is in the arguments, draft the MR/PR title using the exact same format as the commit subject (including the task ID), and a short MR/PR description summarizing the changes. The MR/PR title must match the commit subject because it becomes a commit message when merged.
+10. If `--mr` is in the arguments:
+    a. Draft the MR/PR title using the exact same format as the commit subject (including the task ID). The title must match the commit subject because it becomes a commit message when merged.
+    b. **Check for a repository MR/PR template** before writing any description. Find template files with a glob / `git ls-files` (do NOT execute template contents):
+       - GitLab: `.gitlab/merge_request_templates/*.md`
+       - GitHub: `.github/PULL_REQUEST_TEMPLATE.md`, `.github/pull_request_template.md`, `PULL_REQUEST_TEMPLATE.md`, `docs/PULL_REQUEST_TEMPLATE.md`, `docs/pull_request_template.md`, and any `*.md` under `.github/PULL_REQUEST_TEMPLATE/`
+    c. If exactly one template is found, `Read` it and draft the description **by filling the template**: keep its headings, order, and structure intact; fill every section with content derived from the actual changes; replace placeholders; tick the checkboxes that genuinely apply (leave the rest unticked, never invent claims to satisfy a box); and strip instructional HTML comments (`<!-- ... -->`) unless a comment carries real content. If a section can't be filled from the diff (e.g. "Testing steps", "Screenshots"), leave a clear `TODO:` marker rather than fabricating.
+    d. If multiple templates are found, ask the user which one to use (`AskUserQuestion`), then fill it as in (c). Remember the chosen template's file path/name for Phase 4.
+    e. If no template is found, fall back to a short description with a `## Summary` section of bullet points.
 
 ## Phase 3 — Single Confirmation
 
@@ -69,9 +76,9 @@ Present EVERYTHING in one block for the user to review and edit. Use this exact 
 
     **MR/PR** (only if `--mr`):
     - Title: `type(scope): subject line [TASK-ID]`
+    - Template: `<path to repo template used>` or `none (default summary)`
     - Description:
-      ## Summary
-      - bullet points
+      <the filled template, or the `## Summary` bullets when no template exists>
 
 11. Ask the user to confirm or request changes. They can edit ANY part: branch name, commit message, file list, MR/PR title/description. Do NOT proceed without explicit approval.
 12. If the user requests changes, update the relevant parts and re-present. Repeat until approved.
@@ -98,7 +105,7 @@ Once approved, execute all steps without further prompts:
        - URL contains `gitlab` → use `glab`
        - If unclear, ask the user.
     b. Push: `git push -u origin HEAD`
-    c. Create MR/PR with the approved title and description:
+    c. Create MR/PR with the approved title and the approved description. Pass the already-filled description directly (via `--body` / `--description`) so the platform does not re-insert a blank template on top of it:
        - GitHub: `gh pr create --title "..." --body "..."`
        - GitLab: `glab mr create --title "..." --description "..."`
     d. Show the MR/PR URL to the user.

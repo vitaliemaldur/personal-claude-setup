@@ -123,13 +123,9 @@
       "mcp__atlassian__addCommentToJiraIssue",
       "mcp__atlassian__createJiraIssue",
       "mcp__atlassian__transitionJiraIssue",
-<<<<<<< HEAD
       "mcp__atlassian__createIssueLink",
       "Bash(terraform fmt *)",
       "Bash(git checkout *)"
-=======
-      "mcp__atlassian__createIssueLink"
->>>>>>> eb0c82d (feat: Add Atlassian MCP server with auto-allow permissions [noissue])
     ]
   },
   "hooks": {},
