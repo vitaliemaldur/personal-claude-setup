@@ -1,56 +1,70 @@
-# claude-setup
+# personal-claude-setup
 
-Personal Claude Code configuration, version-controlled.
+My personal agent setup as plain files. No plugin, no install script: copy each file to the place the agent reads it from.
 
-## Fresh Machine
+## Layout
 
-```bash
-git clone <repo-url> ~/.claude
+```
+global/                     Shared by every agent (Claude Code, Codex, OpenCode, Pi)
+├── AGENTS.md               Global rules
+└── skills/<name>/SKILL.md  Skills (Agent Skills standard)
+
+claude/                     Claude Code only
+├── settings.json           Permissions, statusline config, etc.
+└── statusline-command.sh   Statusline script (settings.json runs it from ~/.claude/)
 ```
 
-## Existing ~/.claude
+## Where each file goes
+
+| | Global rules (`global/AGENTS.md`) | Skills (`global/skills/*`) |
+|---|---|---|
+| Claude Code | `~/.claude/CLAUDE.md` (renamed: Claude has no global `AGENTS.md`) | `~/.claude/skills/` |
+| Codex | `~/.codex/AGENTS.md` | `~/.agents/skills/` |
+| OpenCode | `~/.config/opencode/AGENTS.md` | `~/.agents/skills/` |
+| Pi | `~/.pi/agent/AGENTS.md` | `~/.agents/skills/` |
+
+`~/.agents/skills/` is the shared skills folder that Codex, OpenCode and Pi all read, so one copy there serves all three.
+
+## Copy commands
+
+Run these from the repo root. `cp -R global/skills/. <dir>` merges the skills into the folder and keeps any other skills already there.
+
+**Claude Code**
 
 ```bash
-cd ~/.claude
-git init
-git remote add origin git@github.com:vitaliemaldur/personal-claude-setup.git
-git fetch
-git checkout -f main
+mkdir -p ~/.claude/skills
+cp global/AGENTS.md ~/.claude/CLAUDE.md
+cp -R global/skills/. ~/.claude/skills/
+cp claude/settings.json claude/statusline-command.sh ~/.claude/
 ```
 
-The `-f` overwrites tracked config files with repo versions. Runtime files (cache, history, sessions, etc.) are gitignored and left untouched.
+> `cp claude/settings.json` **overwrites** your local `~/.claude/settings.json`, including MCP permissions and anything Claude Code wrote there. Compare them first: `diff claude/settings.json ~/.claude/settings.json`.
+
+**Codex, OpenCode, Pi**
+
+```bash
+mkdir -p ~/.agents/skills ~/.codex ~/.config/opencode ~/.pi/agent
+cp -R global/skills/. ~/.agents/skills/
+cp global/AGENTS.md ~/.codex/AGENTS.md
+cp global/AGENTS.md ~/.config/opencode/AGENTS.md
+cp global/AGENTS.md ~/.pi/agent/AGENTS.md
+```
 
 ## Updating
 
-```bash
-cd ~/.claude && git pull
-```
+The copies don't update themselves. After you change something here (or `git pull` on another machine), run the copy commands again. A skill you delete or rename here also has to be removed from the target folder by hand.
 
-## What's Tracked
+## Adding a skill
 
-| File | Purpose |
-|------|---------|
-| `settings.json` | Permissions, hooks, env vars, preferences |
-| `keybindings.json` | Keyboard shortcuts |
-| `CLAUDE.md` | Global instructions for all projects |
-| `skills/` | Custom slash commands |
-| `agents/` | Custom subagents |
-| `hooks/` | Hook scripts (referenced by settings.json) |
-| `setup.sh` | Installs Homebrew packages and MCP servers |
+Create `global/skills/<name>/SKILL.md` with `name` (matching the folder name) and `description` in the frontmatter. Keep it tool-neutral: Claude-only features such as `` !`command` `` preloading show up as literal text in other agents.
 
-## Adding a Skill
+## Recommended MCP servers
 
-```bash
-mkdir ~/.claude/skills/my-skill
-# Create ~/.claude/skills/my-skill/SKILL.md with frontmatter + instructions
-```
+MCP servers need personal credentials, so they're not in this repo. Install them yourself:
 
-## Adding an Agent
+| Server | URL | Claude Code |
+|---|---|---|
+| [Context7](https://context7.com) (up-to-date library docs) | `https://mcp.context7.com/mcp` | `claude mcp add --scope user --transport http --header "CONTEXT7_API_KEY: <key>" context7 https://mcp.context7.com/mcp` |
+| [Atlassian](https://www.atlassian.com/platform/remote-mcp-server) (Jira, Confluence) | `https://mcp.atlassian.com/v1/mcp` | `claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp` |
 
-```bash
-# Create ~/.claude/agents/my-agent.md with frontmatter + instructions
-```
-
-## MCP Servers
-
-MCP servers live in `~/.claude.json` (runtime state), so they can't be tracked via git. Add `claude mcp add` commands directly in `setup.sh`, then run it to install. The script will prompt for API keys and tokens interactively.
+For the other agents, add the same URLs to their MCP config: `codex mcp add`, the `mcp` section of `opencode.json`, or a Pi MCP extension.

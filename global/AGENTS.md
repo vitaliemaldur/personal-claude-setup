@@ -1,7 +1,7 @@
-# Global Claude Code Instructions
+# Global Agent Instructions
 
 <!-- These instructions apply to ALL projects. Keep them general. -->
-<!-- Project-specific instructions belong in each project's own CLAUDE.md. -->
+<!-- Project-specific instructions belong in each project's own AGENTS.md (or CLAUDE.md). -->
 
 ## Interaction
 - If it is not a trivial change always explain how it works and why. Help me learn.

@@ -1,5 +1,5 @@
 ---
-name: v-commit
+name: commit
 description: Create a conventional commit, optionally create a branch and open a MR/PR
 user-invocable: true
 disable-model-invocation: true
@@ -10,17 +10,15 @@ allowed-tools: Bash, Read, Grep, AskUserQuestion
 Create a conventional commit for the current project.
 
 Arguments received: $ARGUMENTS
+(If this line shows a literal `$ARGUMENTS`, use whatever the user wrote after the skill name instead.)
 
-## Git State (auto-collected)
+## Git State
 
-### Status
-!`git status`
+Before anything else, run these commands and use their output as the git state:
 
-### Staged changes summary
-!`git diff --cached --stat`
-
-### Unstaged changes summary
-!`git diff --stat`
+- `git status`
+- `git diff --cached --stat` (staged changes summary)
+- `git diff --stat` (unstaged changes summary)
 
 ## Argument Parsing
 
@@ -31,9 +29,7 @@ Parse `$ARGUMENTS` for:
 
 ## Phase 1 — Analyze Changes
 
-The **Git State** section above already contains the output of `git status` and diff stats (auto-collected before you start).
-
-1. Review the auto-collected git state above. If there are no changes at all (nothing staged, unstaged, or untracked), tell the user "Nothing to commit." and stop.
+1. Review the git state collected above. If there are no changes at all (nothing staged, unstaged, or untracked), tell the user "Nothing to commit." and stop.
 2. For small changesets (few files), run `git diff --cached` to see full staged diffs. For large changesets, read individual changed files selectively instead.
 3. Read relevant changed files to understand WHAT changed and WHY.
 
@@ -58,7 +54,7 @@ Based on the analysis, prepare everything the user needs to review in a single s
          - GitHub org default: a `PULL_REQUEST_TEMPLATE.md` (or `.github/`, `docs/`) in the org's special `.github` repo — `gh api "repos/<org>/.github/contents/PULL_REQUEST_TEMPLATE.md"` (base64-decode `.content`).
        - **Precedence:** a repo-file template wins; if there is none, use the server-side default. You MUST fetch and fill the server-side template yourself, because Phase 4 passes `--description`/`--body` explicitly, which OVERRIDES the platform's own default — an undetected server template is silently lost.
     c. If exactly one template is found (from either source), `Read`/fetch it and draft the description **by filling the template**: keep its headings, order, and structure intact; fill every section with content derived from the actual changes; replace placeholders; tick the checkboxes that genuinely apply (leave the rest unticked, never invent claims to satisfy a box); and strip instructional HTML comments (`<!-- ... -->`) unless a comment carries real content. If a section can't be filled from the diff (e.g. "Testing steps", "Screenshots"), leave a clear `TODO:` marker rather than fabricating.
-    d. If multiple templates are found, ask the user which one to use (`AskUserQuestion`), then fill it as in (c). Remember the chosen template's source (file path, or "project default (server-side)") for Phase 3/4.
+    d. If multiple templates are found, ask the user which one to use (with `AskUserQuestion` or your harness's equivalent question tool, if available), then fill it as in (c). Remember the chosen template's source (file path, or "project default (server-side)") for Phase 3/4.
     e. If no template is found in either place, fall back to a short description with a `## Summary` section of bullet points.
 
 ## Phase 3 — Single Confirmation
