@@ -1,5 +1,5 @@
 ---
-name: commit
+name: v-commit
 description: Create a conventional commit, optionally create a branch and open a MR/PR
 user-invocable: true
 disable-model-invocation: true

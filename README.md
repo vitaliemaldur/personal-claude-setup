@@ -14,6 +14,23 @@ claude/                     Claude Code only
 └── statusline-command.sh   Statusline script (settings.json runs it from ~/.claude/)
 ```
 
+## Requirements
+
+`global/AGENTS.md` tells agents to use these CLI tools, so install them first (macOS, Homebrew):
+
+```bash
+brew install gh glab
+brew install --cask gcloud-cli   # gcloud + bq
+```
+
+Then log in: `gh auth login`, `glab auth login`, `gcloud auth login`.
+
+Also install [herdr](https://herdr.dev), a terminal workspace manager for AI coding agents. Its Claude Code hook is set up after copying the files, see [herdr hook](#herdr-hook).
+
+```bash
+curl -fsSL https://herdr.dev/install.sh | sh
+```
+
 ## Where each file goes
 
 | | Global rules (`global/AGENTS.md`) | Skills (`global/skills/*`) |
@@ -39,6 +56,17 @@ cp claude/settings.json claude/statusline-command.sh ~/.claude/
 ```
 
 > `cp claude/settings.json` **overwrites** your local `~/.claude/settings.json`, including MCP permissions and anything Claude Code wrote there. Compare them first: `diff claude/settings.json ~/.claude/settings.json`.
+
+#### herdr hook
+
+herdr's Claude Code integration adds a `SessionStart` hook that reports each session to herdr, so herdr can restore sessions after a restart. The hook isn't in this repo: herdr's installer writes the script to `~/.claude/hooks/herdr-agent-state.sh` and adds the hook entry to `~/.claude/settings.json` itself.
+
+```bash
+herdr integration install claude
+herdr integration status
+```
+
+Run `herdr integration install claude` **after** copying `settings.json`, and again every time you copy it, because the copy removes herdr's hook entry.
 
 **Codex, OpenCode, Pi**
 
